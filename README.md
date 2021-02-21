@@ -1,1 +1,1 @@
-# sqlstash
+# SQL Stash for Data Analytics
