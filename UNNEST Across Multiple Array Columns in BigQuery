@@ -1,0 +1,20 @@
+#standardSQL
+
+SELECT *
+
+FROM `project.dataset.table` CROSS JOIN
+UNNEST(status) status WITH OFFSET pos1 LEFT JOIN
+UNNEST(locale) locale WITH OFFSET pos2
+
+WHERE pos1 = pos2
+
+
+
+#standardSQL
+
+SELECT *
+
+FROM `project.dataset.table` CROSS JOIN
+UNNEST(status) as status WITH OFFSET as pos1 INNER JOIN
+UNNEST(locale) as locale WITH OFFSET as pos2
+ON pos1 = pos2
