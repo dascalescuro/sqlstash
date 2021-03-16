@@ -1,0 +1,8 @@
+#count all null values
+
+SELECT
+  COUNT(*) AS all_rows,
+  COUNT(columnname) AS non_null_count,
+  COUNT(*) - COUNT(columnname) AS null_count
+FROM
+  yourtable
