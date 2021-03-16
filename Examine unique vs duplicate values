@@ -1,0 +1,5 @@
+SELECT
+  COUNT(DISTINCT v) AS unique_values,
+  COUNT(*) AS value
+FROM
+  `dateset.testdata`;
