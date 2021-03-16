@@ -1,3 +1,7 @@
+/*COUNT(*) returns the number of items in a group, including NULL values and duplicates.
+
+COUNT(expression) evaluates expression for each row in a group and returns the number of nonnull values.*/
+
 #count all null values
 
 SELECT
