@@ -1,0 +1,42 @@
+/*The first step is to define your criteria for a duplicate row. Do you need a combination of two columns to be unique together, or are you simply searching for duplicates in a single column? In this example, we are searching for duplicates across two columns in our Users table: username and email.
+*/
+
+
+# Verify If Duplicates Exist
+
+SELECT
+  username,
+  email,
+  COUNT(*)
+FROM
+  users
+GROUP BY
+  username,
+  email
+HAVING
+  COUNT(*) > 1
+
+
+# return the entire record for each duplicate row
+
+SELECT
+  a.*
+FROM
+  users a
+JOIN (
+  SELECT
+    username,
+    email,
+    COUNT(*)
+  FROM
+    users
+  GROUP BY
+    username,
+    email
+  HAVING
+    COUNT(*) > 1 ) b
+ON
+  a.username = b.username
+  AND a.email = b.email
+ORDER BY
+  a.email
