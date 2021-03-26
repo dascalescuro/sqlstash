@@ -1,0 +1,46 @@
+WITH data AS
+(
+  SELECT 1001 as id, ['a', 'b', 'c'] as array_1, [1, 2, 3] as array_2
+  UNION ALL
+  SELECT 1002 as id, ['d', 'e', 'f', 'g'] as array_1, [4, 5, 6, 7] as array_2
+  UNION ALL
+  SELECT 1003 as id, ['h', 'i'] as array_1, [8, 9] as array_2
+)
+
+#standardSQL
+
+
+WITH data AS
+(
+  SELECT 1001 as id, ['a', 'b', 'c'] as array_1, [1, 2, 3] as array_2
+  UNION ALL
+  SELECT 1002 as id, ['d', 'e', 'f', 'g'] as array_1, [4, 5, 6, 7] as array_2
+  UNION ALL
+  SELECT 1003 as id, ['h', 'i'] as array_1, [8, 9] as array_2
+)
+
+SELECT
+  id,
+  a1,
+  a2
+FROM
+  DATA CROSS JOIN
+  UNNEST(array_1) AS a1 WITH OFFSET n1 JOIN
+  UNNEST(array_2) AS a2 WITH OFFSET n2
+  ON n1 = n2;
+
+
+#standardSQL
+SELECT
+  id,
+  a1,
+  a2
+FROM
+  DATA,
+  UNNEST(array_1) AS a1 WITH OFFSET JOIN
+  UNNEST(array_2) AS a2 WITH OFFSET
+  USING (OFFSET);
+  
+  
+  
+  
